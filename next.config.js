@@ -1,7 +1,2 @@
-
-module.exports = withImages({
-  env: {
-    key: 'https://jsonplaceholder.typicode.com/posts',
-  }
-  
-})
+const withImages = require("next-images");
+module.exports = withImages({});

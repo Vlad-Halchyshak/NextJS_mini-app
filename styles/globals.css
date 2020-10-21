@@ -9,7 +9,7 @@
 .header_info {
   background-image: url(../assets/Vector.png), url(../assets/Line.png);
   background-repeat: no-repeat;
-  background-position: 77% 45%, 78.5% 45%;
+  background-position: 77% 72%, 78.5% 70%;
 }
 .header_info p {
   float: right;
@@ -35,7 +35,7 @@ img {
   border-radius: 100%;
   position: absolute;
   left: 1191px;
-  top: 18px;
+  top: 24px;
 }
 
 .info_block {
@@ -71,7 +71,7 @@ img {
   font-size: 14px;
   top: 45px;
   left: 137px;
-  background-image: url(../assets/edit.png);
+  
   background-repeat: no-repeat;
   background-position: 43% -4%;
 }
@@ -80,7 +80,14 @@ img {
   background-repeat: no-repeat;
   position: relative;
 } */
-
+.name_options button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+    
+}
 .details img {
   position: absolute;
   background-repeat: no-repeat;
@@ -178,6 +185,7 @@ img {
   border: none;
   color: #ffffff;
   font-size: 14px;
+  outline: none;
 }
 
 .errorName {
@@ -198,3 +206,24 @@ img {
  left: 1018px;
   top: 120px;
 }
+.modal  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+  
+}
+.modal button {
+ margin: 40px;
+ background: #01BDA7;
+border-radius: 41px;
+width: 202px;
+height: 50px;
+border: none;
+font-style: 14px;
+color: #ffffff;
+cursor: pointer;
+outline: none;
+}
+ 

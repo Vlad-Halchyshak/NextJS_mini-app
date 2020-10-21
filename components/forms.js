@@ -18,6 +18,18 @@ export const ValidationTextFields = (e) => {
       },
     },
   }));
+
+  const useStyle = makeStyles((theme) => ({
+    paper: {
+      position: "absolute",
+      width: 600,
+      height: 318,
+      backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(2, 4, 3),
+      marginLeft: 350,
+      marginTop: 250,
+    },
+  }));
   const classes = useStyles();
 
   const [name, setName] = useState("");
@@ -36,6 +48,7 @@ export const ValidationTextFields = (e) => {
     switch (e.target.name) {
       case "name":
         setNameDirty(true);
+        
         break;
       case "email":
         setEmailDirty(true);
@@ -46,12 +59,13 @@ export const ValidationTextFields = (e) => {
   };
   const nameHandler = (e) => {
     setName(e.target.value);
-
+    
     if (e.target.value.length <= 1) {
       setNameError("Вы неверно указали имя");
     } else {
       setNameError("");
     }
+    
   };
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -70,25 +84,13 @@ export const ValidationTextFields = (e) => {
       setPhoneError("");
     }
   };
-  const data = {
-    name: name,
-    email: email,
-    phone: phone,
-  };
 
-  const useStyle = makeStyles((theme) => ({
-    paper: {
-      position: "absolute",
-      width: 600,
-      height: 318,
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(2, 4, 3),
-      marginLeft: 350,
-      marginTop: 250,
-    },
-  }));
-  const [open, setOpen] = React.useState(false);
-  const [openSecondModal, setOpenSecondModal] = React.useState(false);
+  const formHandler = (e) => {
+    e.preventDefault();
+    }
+
+  const [open, setOpen] = useState(false);
+  const [openSecondModal, setOpenSecondModal] = useState(false);
 
   function SimpleModal() {
     const classes = useStyle();
@@ -106,6 +108,7 @@ export const ValidationTextFields = (e) => {
           <h2 id="simple-modal-title">Сохранить изменения?</h2>
           <button
             onClick={() => SaveDataToLocalStorage(setOpenSecondModal(true))}
+          
           >
             Сохранить
           </button>
@@ -141,24 +144,34 @@ export const ValidationTextFields = (e) => {
       </div>
     );
   }
-  const url = process.env.NEXT_PUBLIC_URL;
+  // it doesn't work when you clone repo :(
+  //const url = process.env.NEXT_PUBLIC_URL;
 
-  const SendDataForm = async () => {
-    const response = await axios.post(`${url}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        "x-token-access": "random",
-      },
-    });
+  const data = {
+    name: name,
+    email: email,
+    phone: phone,
+    
   };
+  const SendDataForm = async () => {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-token-access": "random",
+        },
+      }
+    );
+  }
+  
 
   const SaveDataToLocalStorage = () => {
-    localStorage.setItem("MyData", JSON.stringify(data));
-  };
-
-  const formHandler = (e) => {
-    e.preventDefault();
-  };
+    localStorage.setItem("MyData", JSON.stringify(data)) 
+     }
+    
+  
 
   return (
     <form
